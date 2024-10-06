@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline';" />
+
+        <!-- Styles -->
+
+        <!-- Libraries -->
+        <script src="./scripts/libs/customComponents/CCBase.js"></script>
+        <script src="./scripts/libs/customComponents/CCObservableBase.js"></script>
+
+        <script src="./scripts/libs/enums/Enum.js"></script>
+
+        <script src="./scripts/libs/observables/ObservableEnums.js"></script>
+        <script src="./scripts/libs/observables/Observable.js"></script>
+        <script src="./scripts/libs/observables/ObservableCore.js"></script>
+        <script src="./scripts/libs/observables/ObservableData.js"></script>
+        <script src="./scripts/libs/observables/ObservableDataEvent.js"></script>
+        <script src="./scripts/libs/observables/ObservablesDictionary.js"></script>
+
+        <script src="./scripts/libs/fluxPattern/Action.js"></script>
+        <script src="./scripts/libs/fluxPattern/Dispatcher.js"></script>
+        <script src="./scripts/libs/fluxPattern/Store.js"></script>
+
+        <script src="./scripts/libs/helpers/Helpers.js"></script>
+
+        <!-- ActionHandlers -->
+        <script src="./scripts/actionHandlers/AppActionHandler.js"></script>
+
+        <!-- Components -->
+        <script src="./scripts/components/CCbutton.js"></script>
+        <script src="./scripts/components/CCLabel.js"></script>
+    
+        <!-- Controllers -->
+        <script src="./scripts/controllers/StartupController.js"></script>
+
+        <!-- Services -->
+        <script src="./scripts/services/ComponentRegistry.js"></script>
+        <script src="./scripts/services/Listner.js"></script>
+
+
+    </head>
+    <body onload="StartupController.initialise()">
+        <div id="ComponentRoot">
+        </div>        
+    </body>
+</html>
