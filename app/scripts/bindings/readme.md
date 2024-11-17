@@ -19,6 +19,7 @@ Learn about callbacks. Essentially callbacks are functions that you pass around 
 
 ## How might I do that?
 Let's look at the most typical example of a callback in this framework. Let's say you want to copy every piece of data from a store item into a component. Here is how we might write that callback.
+
     let MyCallback_OnDataChange = function(event) {
         // Log ... to make your debugging easier :)
         Log.debug('Component Data Listener Callback Extension', "COMPONENT BINDING");
