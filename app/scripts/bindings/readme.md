@@ -19,15 +19,15 @@ Learn about callbacks. Essentially callbacks are functions that you pass around 
 
 ## How might I do that?
 Let's look at the most typical example of a callback in this framework. Let's say you want to copy every piece of data from a store item into a component. Here is how we might write that callback.
-`let MyCallback_OnDataChange = function(event) {
-    // Log ... to make your debugging easier :)
-    Log.debug('Component Data Listener Callback Extension', "COMPONENT BINDING");
+    let MyCallback_OnDataChange = function(event) {
+        // Log ... to make your debugging easier :)
+        Log.debug('Component Data Listener Callback Extension', "COMPONENT BINDING");
 
-    // Do the copy. 
-    // Note, in this case 'this' means your component. If you use this code, don't forget to bind your component as 'this' when you call this callback.
-    for (let [key, value] of Object.entries(this.observableData)) {
-        if (event.originatingObject.observableData.hasOwnProperty(key)) {
-            this.observableData[key] = event.originatingObject.observableData[key];
+        // Do the copy. 
+        // Note, in this case 'this' means your component. If you use this code, don't forget to bind your component as 'this' when you call this callback.
+        for (let [key, value] of Object.entries(this.observableData)) {
+            if (event.originatingObject.observableData.hasOwnProperty(key)) {
+                this.observableData[key] = event.originatingObject.observableData[key];
+            }
         }
     }
-}`
