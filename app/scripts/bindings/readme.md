@@ -1,12 +1,13 @@
 ## What goes here?
-In this folder you should place binding callbacks. for most projects that this framework you'll need to think about two types of bindings:
-- One from your user interface to the dispatcher (This one is easy, because the dispatcher takes care of this one for you).
-- One from the store to you component. This is a little tricker so you'll have to code it this in this folder to implement whatever logic you need.
+In this folder you should place binding callbacks. For most projects that use this framework you'll need to think about two types of bindings:
+- One from your user interface to the dispatcher (Most of the time, this one will be easy, because the dispatcher takes care of most situations for you).
+- One from the store to your component. (This is a little tricker, as it depends on what you want the binding to do. So you will need to code this yourself. See below for an example).
 
-## What else do I need before I can code this?
+## What else do I need before I can code something here?
 Before you create bindings here, you first need two things to bind together. Specifically:
 - One thing to bind from
 - One thing to bind it to
+
 This will typically be the second example above From Store Item to Component.
 
 ## What should I learn first?
@@ -20,6 +21,7 @@ Learn about callbacks. Essentially callbacks are functions that you pass around 
 ## How might I do that?
 Let's look at the most typical example of a callback in this framework. Let's say you want to copy every piece of data from a store item into a component. Here is how we might write that callback.
 
+```js
     let MyCallback_OnDataChange = function(event) {
         // Log ... to make your debugging easier :)
         Log.debug('Component Data Listener Callback Extension', "COMPONENT BINDING");
@@ -32,3 +34,4 @@ Let's look at the most typical example of a callback in this framework. Let's sa
             }
         }
     }
+```
