@@ -3,7 +3,7 @@ In this folder you should place binding callbacks. for most projects that this f
 - One from your user interface to the dispatcher (This one is easy, because the dispatcher takes care of this one for you).
 - One from the store to you component. This is a little tricker so you'll have to code it this in this folder to implement whatever logic you need.
 
-## What do I need before doing this?
+## What else do I need before I can code this?
 Before you create bindings here, you first need two things to bind together. Specifically:
 - One thing to bind from
 - One thing to bind it to
@@ -19,8 +19,7 @@ Learn about callbacks. Essentially callbacks are functions that you pass around 
 
 ## How might I do that?
 Let's look at the most typical example of a callback in this framework. Let's say you want to copy every piece of data from a store item into a component. Here is how we might write that callback.
-`
-let MyCallback_OnDataChange = function(event) {
+`let MyCallback_OnDataChange = function(event) {
     // Log ... to make your debugging easier :)
     Log.debug('Component Data Listener Callback Extension', "COMPONENT BINDING");
 
@@ -31,5 +30,4 @@ let MyCallback_OnDataChange = function(event) {
             this.observableData[key] = event.originatingObject.observableData[key];
         }
     }
-}
-`
+}`
