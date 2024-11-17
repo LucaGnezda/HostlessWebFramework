@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline';" />
+
+        <!-- Framework -->
+        <script defer src="./framework/scripts/customComponents/CCBase.js"></script>
+        <script defer src="./framework/scripts/customComponents/CCObservableBase.js"></script>
+
+        <script defer src="./framework/scripts/fluxPattern/Action.js"></script>
+        <script defer src="./framework/scripts/fluxPattern/Dispatcher.js"></script>
+        <script defer src="./framework/scripts/fluxPattern/Store.js"></script>
+
+        <script defer src="./framework/scripts/observables/ObservableEnums.js"></script>
+        <script defer src="./framework/scripts/observables/Observable.js"></script>
+        <script defer src="./framework/scripts/observables/ObservableCore.js"></script>
+        <script defer src="./framework/scripts/observables/ObservableDataEvent.js"></script>
+        <script defer src="./framework/scripts/observables/ObservablesDictionary.js"></script>
+
+        <script defer src="./framework/scripts/logging/LoggingEnums.js"></script>
+        <script defer src="./framework/scripts/logging/Log.js"></script>
+
+        <script defer src="./framework/scripts/helpers/Helpers.js"></script>
+
+        <!-- Styles -->
+        <!-- Add your project specific styling here -->
+
+        <!-- Enums -->
+        <!-- Add your project specific enumeration types here -->
+
+        <!-- ActionHandlers -->
+        <!-- Add your project specific action handlers here -->
+
+        <!-- Bindings -->
+        <!-- Add your project specific component binding callbacks here -->
+
+        <!-- Components -->
+        <!-- Add your project specific components here -->
+        
+
+        <!-- Services -->
+        <script defer src="./app/scripts/services/App.js"></script>
+        <script defer src="./app/scripts/services/AppService.js"></script>
+        <script defer src="./app/scripts/services/ComponentRegistry.js"></script>
+        
+    </head>
+    <body onload="AppService.Initialise()" data-body>
+        <p>Hi I'm a hostless web framework starter kit. Check the readme to get started :)</p>
+    </body>
+</html>
