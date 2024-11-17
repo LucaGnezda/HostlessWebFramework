@@ -1,46 +1,51 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline';" />
 
+        <!-- Framework -->
+        <script defer src="./framework/scripts/customComponents/CCBase.js"></script>
+        <script defer src="./framework/scripts/customComponents/CCObservableBase.js"></script>
+
+        <script defer src="./framework/scripts/fluxPattern/Action.js"></script>
+        <script defer src="./framework/scripts/fluxPattern/Dispatcher.js"></script>
+        <script defer src="./framework/scripts/fluxPattern/Store.js"></script>
+
+        <script defer src="./framework/scripts/observables/ObservableEnums.js"></script>
+        <script defer src="./framework/scripts/observables/Observable.js"></script>
+        <script defer src="./framework/scripts/observables/ObservableCore.js"></script>
+        <script defer src="./framework/scripts/observables/ObservableDataEvent.js"></script>
+        <script defer src="./framework/scripts/observables/ObservablesDictionary.js"></script>
+
+        <script defer src="./framework/scripts/logging/LoggingEnums.js"></script>
+        <script defer src="./framework/scripts/logging/Log.js"></script>
+
+        <script defer src="./framework/scripts/helpers/Helpers.js"></script>
+
         <!-- Styles -->
+        <!-- Add your project specific styling here -->
 
-        <!-- Libraries -->
-        <script src="./scripts/libs/customComponents/CCBase.js"></script>
-        <script src="./scripts/libs/customComponents/CCObservableBase.js"></script>
-
-        <script src="./scripts/libs/enums/Enum.js"></script>
-
-        <script src="./scripts/libs/observables/ObservableEnums.js"></script>
-        <script src="./scripts/libs/observables/Observable.js"></script>
-        <script src="./scripts/libs/observables/ObservableCore.js"></script>
-        <script src="./scripts/libs/observables/ObservableData.js"></script>
-        <script src="./scripts/libs/observables/ObservableDataEvent.js"></script>
-        <script src="./scripts/libs/observables/ObservablesDictionary.js"></script>
-
-        <script src="./scripts/libs/fluxPattern/Action.js"></script>
-        <script src="./scripts/libs/fluxPattern/Dispatcher.js"></script>
-        <script src="./scripts/libs/fluxPattern/Store.js"></script>
-
-        <script src="./scripts/libs/helpers/Helpers.js"></script>
+        <!-- Enums -->
+        <!-- Add your project specific enumeration types here -->
 
         <!-- ActionHandlers -->
-        <script src="./scripts/actionHandlers/AppActionHandler.js"></script>
+        <!-- Add your project specific action handlers here -->
+
+        <!-- Bindings -->
+        <!-- Add your project specific component binding callbacks here -->
 
         <!-- Components -->
-        <script src="./scripts/components/CCbutton.js"></script>
-        <script src="./scripts/components/CCLabel.js"></script>
-    
-        <!-- Controllers -->
-        <script src="./scripts/controllers/StartupController.js"></script>
+        <!-- Add your project specific components here -->
+        
 
         <!-- Services -->
-        <script src="./scripts/services/ComponentRegistry.js"></script>
-        <script src="./scripts/services/Listner.js"></script>
+        <script defer src="./app/scripts/services/App.js"></script>
+        <script defer src="./app/scripts/services/AppService.js"></script>
+        <script defer src="./app/scripts/services/ComponentRegistry.js"></script>
 
-
+        <script defer src="./app/scripts/helpers/Helpers.js"></script>
     </head>
-    <body onload="StartupController.initialise()">
-        <div id="ComponentRoot">
-        </div>        
+    <body onload="AppService.Initialise()" data-body>
+        <p>Hi I'm a hostless web framework starter kit. Check the readme to get started :)</p>
     </body>
 </html>
