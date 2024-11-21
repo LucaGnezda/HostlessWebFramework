@@ -31,9 +31,119 @@ Ok, I'd actually start by:
 3. Go back to the DDD presentation and look at how it did things for inspiration.
 4. Start your own project
 
+## Usage examples for this Framework
+The examples below have been designed to be self contained, allowing you to copy and paste them directly into a browser console.
+
+### Logging
+
+```js
+Log.setLoggingLevel(LogLevel.Trace); // or any other level, only that level and above will print to console.
+Log.trace("Something worth tracing", "ModuleX");
+Log.debug("Something worth debugging", "ModuleX");
+Log.info("Something worth noting", "ModuleX");
+Log.warn("Something worth warning about", "ModuleX");
+Log.error("Something went wrong", "ModuleX");
+Log.fatal("It's all on fire", "ModuleX");
+```
+
+### Observable Usage
+
+```js
+Log.setLoggingLevel(LogLevel.Fatal); // So we only get the callback firing. Or set to trace if you want to see everything it's doing.
+
+let aCallback = function(e) { console.log(`Something changed! ${e.notificationMode} path="${JSON.stringify(e.path)}" from ${JSON.stringify(e.oldValue)} to ${JSON.stringify(e.newValue)}`) };
+
+let myObservable = new ObservableCore(NotificationMode.PropertyNotifyOnChange, NotificationStatus.Inactive);
+myObservable.originatingObject = document; // Set this to the owning object, used for logging and to manage bi-directional subscribe/unsubscribe actions, can also be set to self
+myObservable.addSubscriber(document, aCallback);
+
+// Ok let's put it to the test
+myObservable.dataProxy.simpleData = 1;                        // no event, inactive
+myObservable.dataProxy.objectData = {a: 1, b: {c: 2, d: 3}};  // no event, inactive
+myObservable.notificationStatus = NotificationStatus.Active
+myObservable.dataProxy.simpleData = 2;                        // change event
+myObservable.dataProxy.simpleData = 2;                        // no event, no change
+myObservable.dataProxy.objectData = {a: 1, b: {c: 2, d: 3}};  // no event, no change
+myObservable.dataProxy.objectData = {a: 1, b: {c: 2, d: 4}};  // change event
+myObservable.dataProxy.objectData = {a: 1, b: {d: 4, c: 2}};  // no event, same data, only order differs
+myObservable.dataProxy.objectData.b.c = 2;                    // no event, no change
+myObservable.dataProxy.objectData.b.c = 3;                    // change event
+myObservable.dataProxy.objectData.b.c = 3;                    // no event, no change
+
+// And now for batch mode
+Log.setLoggingLevel(LogLevel.Fatal); // So we only get the callback firing. Or set to trace if you want to see everything it's doing.
+
+let aBatchCallback = function(e) { console.log(`Something changed! ${e.notificationMode}`)};
+
+let myBatchObservable = new ObservableCore(NotificationMode.ObjectNotifyOnEmit, NotificationStatus.Inactive);
+myBatchObservable.originatingObject = document;
+myBatchObservable.addSubscriber(document, aBatchCallback);
+
+myBatchObservable.dataProxy.simpleData = 1;                        // no event, inactive
+myBatchObservable.dataProxy.objectData = {a: 1, b: {c: 2, d: 3}};  // no event, inactive
+myBatchObservable.notificationStatus = NotificationStatus.Active
+myBatchObservable.dataProxy.simpleData = 2;                        // change event (but held)
+myBatchObservable.dataProxy.simpleData = 2;                        // no event, no change
+myBatchObservable.dataProxy.objectData = {a: 1, b: {c: 2, d: 3}};  // no event, no change
+myBatchObservable.dataProxy.objectData = {a: 1, b: {c: 2, d: 4}};  // change event (but held)
+myBatchObservable.dataProxy.objectData = {a: 1, b: {d: 4, c: 2}};  // no event, same data, only order differs
+myBatchObservable.dataProxy.objectData.b.c = 2;                    // no event, no change
+myBatchObservable.dataProxy.objectData.b.c = 3;                    // change event (but held)
+myBatchObservable.dataProxy.objectData.b.c = 3;                    // no event, no change
+
+myBatchObservable.emitNotifications();                             // emits
+myBatchObservable.emitNotifications();                             // nothing to emit
+myBatchObservable.emitNotifications(true);                         // emits anyway
+```
+
+### Store Usage
+
+```js
+Log.setLoggingLevel(LogLevel.Trace);
+
+let aCallback = function(e) { console.log(`Store Observable changed! ${e.notificationMode} ${JSON.stringify(e.originatingObject)}`)};
+let aDictionaryCallback = function(e) { console.log(`Store Dictionary changed! ${e.notificationMode} ${JSON.stringify(e.originatingObject)}`)};
+
+let store = new Store();
+store.addObservable("settings");
+store.addObservablesDictionary("players");
+
+store.settings.observableData.teamName = "The Coders";
+store.players.add("player1");
+store.players["player1"].observableData.name = "Luca"
+store.players.add("player2");
+store.players["player2"].observableData.name = "Solomon"
+
+store.settings.addSubscriber(document, aCallback);
+store.players["player1"].addSubscriber(document, aDictionaryCallback);
+store.players["player2"].addSubscriber(document, aDictionaryCallback);
+
+console.log("Emit 1");
+store.emitNotifications();
+
+console.log("Data Changes");
+store.settings.observableData.teamName = "The Emitters";
+store.players["player1"].observableData.name = "LucaG";
+
+console.log("Emit 2");
+store.emitNotifications();
+```
+
+### Dispatcher usage
+
+```js
+class MyActionHandler { route(action) {console.log(`Hello Action {"action.type":"${action.type}", "action.payload":"${action.payload.constructor.name}"}`);} }
+
+let dispatcher = new Dispatcher();
+dispatcher.addDispatchHandler(new MyActionHandler(), "route");
+
+document.body.addEventListener("click", dispatcher.newEventDispatchCallback("MyClick")); // Now try clicking on the text in the browser
+```
+
+
 ## And most importantly of all...
 Coding is and should be fun ... if using this framework doesn't feel like fun, stop and try something else to help you learn coding.
 
-As Eric Curtis says ... "Go make a thing."
+As Eric Curtis likes to say ... "Go make a thing."
 
 Best of luck padawan. 

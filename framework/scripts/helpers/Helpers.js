@@ -126,7 +126,7 @@ function JSONstringifyOrder(obj, space = undefined)
     // extract all properties to include in the ordered stringify,
     // use stringify for convenience as the replacer is called 
     // recursively on objects - properties of properties.
-    JSON.stringify(obj, (key, _) => (allKeys.add(key), key));
+    JSON.stringify(obj, (key, value) => (allKeys.add(key), value));
     // stringify the object, only including the sorted keys, defines both 
     // which properties to include and their order.
     // really cool bit here is duplicate keys don't matter as it's an 
