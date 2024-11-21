@@ -43,9 +43,9 @@ class Log {
      * @throws
      */
     static fatal(msg, category, context) {
-        Log.#log("Fatal Error", "color:#ffffff; background: #ee2225", msg, LogLevel.Fatal, category);
+        Log.#log("Fatal", "color:#ffffff; background: #ee2225", msg, LogLevel.Fatal, category);
         let contextString = context ? `in ${context.constructor.name}` : "";
-        throw `Fatal Error ${contextString} with message: ${msg}`;
+        throw `Fatal ${contextString} with message: ${msg}`;
     }
 
     /**
